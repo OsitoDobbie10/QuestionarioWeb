@@ -1,6 +1,7 @@
 import {type Question } from "../types";
 import { create } from "zustand";
 import confetti from "canvas-confetti";
+import { persist } from "zustand/middleware";
 interface Stade{
     question: Question[],
     currentQuestion: number,
@@ -10,7 +11,7 @@ interface Stade{
     goPreviwequestion: ()=>void
 }
 
-export const UseQuestionStore = create<Stade>((set,get)=>{
+export const UseQuestionStore = create<Stade>()(persist((set,get)=>{
     return {
         question: [],
         currentQuestion: 0,
@@ -51,4 +52,8 @@ export const UseQuestionStore = create<Stade>((set,get)=>{
                 set({currentQuestion:previusQuestion})
             }
         }
-        }});
+    }
+},
+{
+    name:'questions'
+}))

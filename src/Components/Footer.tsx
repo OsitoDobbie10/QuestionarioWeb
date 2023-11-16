@@ -1,15 +1,6 @@
-import { UseQuestionStore } from "../Store/Question"
-export const Footer = ()=>{
-    let correct: number = 0;
-    let incorrect: number = 0;
-    let unanswer: number = 0;
-    const questions = UseQuestionStore(state=>state.question);
-    questions.forEach((ques)=>{
-        const { correctAnswer,userSelectAnswer} = ques;
-        if(userSelectAnswer == null) unanswer++;
-        else if(userSelectAnswer == correctAnswer) correct++;
-        else incorrect++; 
-    })
+import Usequestion from "../Hooks/Usequestion";
+export const Footer = ()=>{ 
+    const {correct,incorrect,unanswer} = Usequestion();
     return (
         <footer style={{marginTop:'16px'}}>
             <strong>

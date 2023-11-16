@@ -2,7 +2,7 @@ import {Button} from "@mui/material"
 import { UseQuestionStore } from "../Store/Question";
 const Start = () => {
     const fetchQuestions = UseQuestionStore(state=>state.fetchQuestion);
-    let LIMIT_QUESTION = 10;
+    let LIMIT_QUESTION = 15;
     const handleclick = ()=>{
         fetchQuestions(LIMIT_QUESTION);
     }
