@@ -8,7 +8,8 @@ interface Stade{
     fetchQuestion: (limit:number)=>Promise<void>,
     selectanswer:(questionId:number,answerIndex:number)=>void,
     goNextquestion: ()=>void,
-    goPreviwequestion: ()=>void
+    goPreviwequestion: ()=>void,
+    reset: ()=>void
 }
 
 export const UseQuestionStore = create<Stade>()(persist((set,get)=>{
@@ -51,6 +52,9 @@ export const UseQuestionStore = create<Stade>()(persist((set,get)=>{
             if(previusQuestion >=0){
                 set({currentQuestion:previusQuestion})
             }
+        },
+        reset:()=>{
+            set({currentQuestion:0,question:[]});
         }
     }
 },
