@@ -1,5 +1,5 @@
 import './App.css';
-import {Container,Stack,Typography}  from '@mui/material'
+import {Container,Stack}  from '@mui/material'
 import { LogoJS } from './Components/LogoJS';
 import Start from './Components/Start';
 import Game from './Components/Game';
@@ -7,8 +7,6 @@ import { UseQuestionStore } from './Store/Question';
 function App() {
   const questions = UseQuestionStore(state=>state.question);
   const widthwindow = window.innerWidth<=768?true:false;
-  console.log(widthwindow);
-  
   return (
     <Container maxWidth="sm">
     <Stack direction='row' gap='20px' alignItems='center' justifyContent='center' marginBottom='10px'>

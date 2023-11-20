@@ -2,24 +2,26 @@ import {type Question } from "../types";
 import { create } from "zustand";
 import confetti from "canvas-confetti";
 import { persist } from "zustand/middleware";
+import {preguntas} from "../Database/Pregubtas"
 interface Stade{
     question: Question[],
     currentQuestion: number,
+    preguntas: Question[],
     fetchQuestion: (limit:number)=>Promise<void>,
     selectanswer:(questionId:number,answerIndex:number)=>void,
     goNextquestion: ()=>void,
     goPreviwequestion: ()=>void,
-    reset: ()=>void
-}
+    reset: ()=>void}
 
-export const UseQuestionStore = create<Stade>()(persist((set,get)=>{
+export const UseQuestionStore = create<Stade>()(persist((set,get) =>{
     return {
         question: [],
         currentQuestion: 0,
-        fetchQuestion: async(limit:number)=>{
-         const arreglo = await fetch('http://localhost:5173/Preguntas.json');
-         const datos = await arreglo.json();
-         const question = datos.sort(()=>Math.random()-0.5).slice(0,limit);
+        fetchQuestion: (limit:number)=>{
+         //const arreglo = await fetch('http://localhost:5173/Preguntas.json');
+         //const datos = await arreglo.json();
+
+         const question = preguntas.sort(()=>Math.random()-0.5).slice(0,limit);
          set({question})
         },
         selectanswer: (questionId:number,answerIndex:number)=>{
